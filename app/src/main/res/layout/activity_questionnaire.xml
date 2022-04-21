@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QuestionnaireActivity">
+
+    <TextView
+        android:id="@+id/textViewNumeroQuestion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/Numero_intitule_question"
+        android:gravity="center"
+        android:paddingStart="20sp"
+        android:paddingTop="20sp"
+        android:paddingEnd="20sp"
+        android:paddingBottom="20sp"
+        android:text="@string/Numero_Question"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewContenuQuestion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/Numero_intitule_question"
+        android:gravity="center"
+        android:paddingStart="20sp"
+        android:paddingTop="20sp"
+        android:paddingEnd="20sp"
+        android:paddingBottom="20sp"
+        android:text="@string/Contenu_Question"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNumeroQuestion" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewContenuQuestion">
+
+        <Button
+            android:id="@+id/buttonReponse1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/bouton_reponse_quiz"
+            android:paddingStart="25dp"
+            android:paddingTop="25dp"
+            android:paddingEnd="25dp"
+            android:paddingBottom="25dp"
+            android:text="@string/Contenu_Reponse"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/buttonReponse2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/bouton_reponse_quiz"
+            android:paddingStart="25dp"
+            android:paddingTop="25dp"
+            android:paddingEnd="25dp"
+            android:paddingBottom="25dp"
+            android:text="@string/Contenu_Reponse"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/buttonReponse3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/bouton_reponse_quiz"
+            android:paddingStart="25dp"
+            android:paddingTop="25dp"
+            android:paddingEnd="25dp"
+            android:paddingBottom="25dp"
+            android:text="@string/Contenu_Reponse"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/buttonReponse4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/bouton_reponse_quiz"
+            android:paddingStart="25dp"
+            android:paddingTop="25dp"
+            android:paddingEnd="25dp"
+            android:paddingBottom="25dp"
+            android:text="@string/Contenu_Reponse"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

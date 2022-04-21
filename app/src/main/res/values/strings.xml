@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Quizz</string>
+    <string name="titre">Aurelien Quiz</string>
+    <string name="message">Bonjour ! Veuillez saisir votre nom</string>
+    <string name="Saisis_prenom">Merci de saisir votre prénom</string>
+    <string name="description_bouton_delete">delete</string>
+    <string name="bouton_commencer_quiz">Commencer le Quiz</string>
+    <string name="Numero_Question">question 1</string>
+    <string name="Contenu_Question">contenu de la question contenu de la question contenu de la question</string>
+    <string name="Contenu_Reponse"></string>
+</resources>

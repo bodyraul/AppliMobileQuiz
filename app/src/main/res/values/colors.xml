@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#00B6EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#32DA03</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#000000</color>
+    <color name="white">#F8FFFFFF</color>
+    <color name="titre">#EE0038</color>
+    <color name="message">#0ADA03</color>
+    <color name="saisis_prenom">#cecece</color>
+    <color name="bouton_commencer_quiz">#FF32DA03</color>
+    <color name="Numero_intitule_question">#FF00B6EE</color>
+    <color name="bouton_reponse_quiz">#2CCD27</color>
+    <color name="image">#FFEE0038</color>
+
+
+</resources>
