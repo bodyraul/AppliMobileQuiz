@@ -4,16 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class QuestionnaireActivity extends AppCompatActivity {
-    int indice=1;
+    int score=0;
+    int nbaleatoire =0;
+    int indiceBonneReponse =1;
+    int indiceMauvaiseReponse1 =0;
+    int indiceMauvaiseReponse2 =1;
+    int indiceMauvaiseReponse3 =2;
     int nombreTotaleQuestion= 0;
     Button reponse1,reponse2,reponse3,reponse4;
     TextView numeroQuestion,contenuQuestion;
@@ -25,6 +33,19 @@ public class QuestionnaireActivity extends AppCompatActivity {
     BonneReponse br3=new BonneReponse("La Lune");
     BonneReponse br4=new BonneReponse("Un footballer");
 
+    MauvaiseReponse mr1= new MauvaiseReponse("1");
+    MauvaiseReponse mr2= new MauvaiseReponse("3");
+    MauvaiseReponse mr3= new MauvaiseReponse("4");
+    MauvaiseReponse mr4= new MauvaiseReponse("Madrid");
+    MauvaiseReponse mr5= new MauvaiseReponse("Tunis");
+    MauvaiseReponse mr6= new MauvaiseReponse("Rome");
+    MauvaiseReponse mr7= new MauvaiseReponse("Jupiter");
+    MauvaiseReponse mr8= new MauvaiseReponse("Saturne");
+    MauvaiseReponse mr9= new MauvaiseReponse("Uranus");
+    MauvaiseReponse mr10= new MauvaiseReponse("Un tennisman");
+    MauvaiseReponse mr11= new MauvaiseReponse("Un pilote");
+    MauvaiseReponse mr12= new MauvaiseReponse("Un chanteur");
+
     Question q1=new Question("Combien font 1+1 ?",  br1 =new BonneReponse("2"));
     Question q2=new Question("Quelle est la capitale de la France?",br2=new BonneReponse("Paris"));
     Question q3=new Question("Comment se nomme le satellite naturel de la Terre",br3=new BonneReponse("La Lune"));
@@ -34,7 +55,8 @@ public class QuestionnaireActivity extends AppCompatActivity {
 
 
     List<Question> questions =new ArrayList<>();
-    List<BonneReponse> bonneReponses = new ArrayList<>();
+    List<BonneReponse> listeBonneReponse = new ArrayList<>();
+    List<MauvaiseReponse> listeMauvaiseReponse = new ArrayList<>();
 
 
     @Override
@@ -52,33 +74,36 @@ public class QuestionnaireActivity extends AppCompatActivity {
         contenuQuestion=findViewById(R.id.textViewContenuQuestion);
 
 
-        ajouterQuestionListe(questions,q1);
-        ajouterQuestionListe(questions,q2);
-        ajouterQuestionListe(questions,q3);
-        ajouterQuestionListe(questions,q4);
-
+        ajouterQuestionListe(questions,q1);ajouterQuestionListe(questions,q2);ajouterQuestionListe(questions,q3);ajouterQuestionListe(questions,q4);
+        
         nombreTotaleQuestion= questions.size();
 
-        ajouterBonneReponseListe(bonneReponses,q1.getBonneReponse());
-        ajouterBonneReponseListe(bonneReponses,q2.getBonneReponse());
-        ajouterBonneReponseListe(bonneReponses,q3.getBonneReponse());
-        ajouterBonneReponseListe(bonneReponses, q4.getBonneReponse());
 
-        majNumeroQuestionQuestionnaire(questions,indice);
-        majContenuReponse(indice);
-        majContenuQuestion(indice);
+        ajouterBonneReponseListe(listeBonneReponse,q1.getBonneReponse());ajouterBonneReponseListe(listeBonneReponse,q2.getBonneReponse());ajouterBonneReponseListe(listeBonneReponse,q3.getBonneReponse());ajouterBonneReponseListe(listeBonneReponse, q4.getBonneReponse());
+
+        ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr1);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr2);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr3);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr4);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr5);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr6);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr7);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr8);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr9);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr10);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr11);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr12);
+
+        majNumeroQuestionQuestionnaire(questions, indiceBonneReponse);
+        majContenuReponse(indiceBonneReponse,indiceMauvaiseReponse1,indiceMauvaiseReponse2,indiceMauvaiseReponse3);
+        majContenuQuestion(indiceBonneReponse);
 
 
         reponse1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                indice++;
-                majNumeroQuestionQuestionnaire(questions,indice);
-                majContenuReponse(indice);
-                majContenuQuestion(indice);
+
+                indiceBonneReponse++;
+                indiceMauvaiseReponse1 +=3;
+                indiceMauvaiseReponse2 +=3;
+                indiceMauvaiseReponse3 +=3;
                 j="1";
+
                 q= testContenuQuestion();
                 testBonneReponse(q);
+                majNumeroQuestionQuestionnaire(questions, indiceBonneReponse);
+                majContenuReponse(indiceBonneReponse,indiceMauvaiseReponse1,indiceMauvaiseReponse2,indiceMauvaiseReponse3);
+                majContenuQuestion(indiceBonneReponse);
+
 
             }
         });
@@ -86,13 +111,21 @@ public class QuestionnaireActivity extends AppCompatActivity {
         reponse2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                indice++;
-                majNumeroQuestionQuestionnaire(questions,indice);
-                majContenuReponse(indice);
-                majContenuQuestion(indice);
+
+                indiceBonneReponse++;
+                indiceMauvaiseReponse1 +=3;
+                indiceMauvaiseReponse2 +=3;
+                indiceMauvaiseReponse3 +=3;
                 j="2";
+
                 q= testContenuQuestion();
                 testBonneReponse(q);
+                majNumeroQuestionQuestionnaire(questions, indiceBonneReponse);
+                majContenuReponse(indiceBonneReponse,indiceMauvaiseReponse1,indiceMauvaiseReponse2,indiceMauvaiseReponse3);
+                majContenuQuestion(indiceBonneReponse);
+
+
+
 
             }
         });
@@ -100,29 +133,52 @@ public class QuestionnaireActivity extends AppCompatActivity {
         reponse3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                indice++;
-                majNumeroQuestionQuestionnaire(questions,indice);
-                majContenuReponse(indice);
-                majContenuQuestion(indice);
+
+                indiceBonneReponse++;
+                indiceMauvaiseReponse1 +=3;
+                indiceMauvaiseReponse2 +=3;
+                indiceMauvaiseReponse3 +=3;
                 j="3";
+
                 q= testContenuQuestion();
                 testBonneReponse(q);
+                majNumeroQuestionQuestionnaire( questions, indiceBonneReponse);
+                majContenuReponse(indiceBonneReponse,indiceMauvaiseReponse1,indiceMauvaiseReponse2,indiceMauvaiseReponse3);
+                majContenuQuestion(indiceBonneReponse);
+
+
             }
         });
 
         reponse4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                indice++;
-                majNumeroQuestionQuestionnaire(questions,indice);
-                majContenuReponse(indice);
-                majContenuQuestion(indice);
+
+                indiceBonneReponse++;
+                indiceMauvaiseReponse1 +=3;
+                indiceMauvaiseReponse2 +=3;
+                indiceMauvaiseReponse3 +=3;
                 j="4";
+
                 q= testContenuQuestion();
                 testBonneReponse(q);
+                majNumeroQuestionQuestionnaire(questions, indiceBonneReponse);
+                majContenuReponse(indiceBonneReponse,indiceMauvaiseReponse1,indiceMauvaiseReponse2,indiceMauvaiseReponse3);
+                majContenuQuestion(indiceBonneReponse);
+
+
+
             }
         });
 
+    }
+
+
+    private int genererInt(int borneInf, int borneSup){
+        Random random = new Random();
+        int nb;
+        nb = borneInf+random.nextInt(borneSup-borneInf);
+        return nb;
     }
 
         private Question testContenuQuestion(){
@@ -135,30 +191,32 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 }
                 return questions.get(k);
             }catch (Exception e){
-                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "pas de contenu", Toast.LENGTH_SHORT).show();
             }
             return questions.get(k);
         }
+
         private void testBoutonReponse(Button b){
-            if(b.getText() == q.getBonneReponse().getReponse()){
-                Toast.makeText(this,"Bonne réponse", Toast.LENGTH_SHORT).show();
+            if(b.getText().toString() == q.getBonneReponse().getReponse()){
+                score+=1;
+                Toast.makeText(this,"bonne réponse", Toast.LENGTH_SHORT).show();
                 try {
                     Thread.sleep(Long.valueOf(time));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if (indice > 4){
-                    Toast.makeText(this, "Quizz terminé", Toast.LENGTH_SHORT).show();
+                if (indiceBonneReponse > 4){
+                    Toast.makeText(this, "Votre score est de : "+score+"/"+nombreTotaleQuestion, Toast.LENGTH_LONG).show();
                 }
             }else {
-                Toast.makeText(this, "mauvaise réponse", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Mauvaise réponse", Toast.LENGTH_SHORT).show();
                 try {
                     Thread.sleep(Long.valueOf(time));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if (indice > 4){
-                    Toast.makeText(this, "Quizz terminé", Toast.LENGTH_SHORT).show();
+                if (indiceBonneReponse > 4){
+                    Toast.makeText(this, "Votre score est de : "+score+"/"+nombreTotaleQuestion, Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -186,6 +244,10 @@ public class QuestionnaireActivity extends AppCompatActivity {
             l.add(b);
         }
 
+        private void ajouterMauvaiseReponseListe(List l,MauvaiseReponse b){
+            l.add(b);
+        }
+
         private void majNumeroQuestionQuestionnaire(List list, int indice){
             if (indice<= nombreTotaleQuestion){
                 numeroQuestion.setText("Question " +indice+"/"+nombreTotaleQuestion);
@@ -203,9 +265,35 @@ public class QuestionnaireActivity extends AppCompatActivity {
             }
         }
 
-        private void majContenuReponse(int indice){
+        private void majContenuReponse(int indice,int indiceMauvaiseReponse1,int indiceMauvaiseReponse2,int indiceMauvaiseReponse3){
             try {
-                reponse1.setText(bonneReponses.get(indice-1).getReponse());
+                nbaleatoire = genererInt(0,4);
+                if(nbaleatoire==0){
+                    reponse1.setText(listeMauvaiseReponse.get(indiceMauvaiseReponse1).getReponse());
+                    reponse2.setText(listeMauvaiseReponse.get(indiceMauvaiseReponse2).getReponse());
+                    reponse3.setText(listeBonneReponse.get(indice-1).getReponse());
+                    reponse4.setText(listeMauvaiseReponse.get(indiceMauvaiseReponse3).getReponse());
+                }
+                if(nbaleatoire==1){
+                    reponse1.setText(listeBonneReponse.get(indice-1).getReponse());
+                    reponse2.setText(listeMauvaiseReponse.get(indiceMauvaiseReponse2).getReponse());
+                    reponse3.setText(listeMauvaiseReponse.get(indiceMauvaiseReponse1).getReponse());
+                    reponse4.setText(listeMauvaiseReponse.get(indiceMauvaiseReponse3).getReponse());
+                }
+                if(nbaleatoire==2){
+                    reponse1.setText(listeMauvaiseReponse.get(indiceMauvaiseReponse2).getReponse());
+                    reponse2.setText(listeBonneReponse.get(indice-1).getReponse());
+                    reponse3.setText(listeMauvaiseReponse.get(indiceMauvaiseReponse1).getReponse());
+                    reponse4.setText(listeMauvaiseReponse.get(indiceMauvaiseReponse3).getReponse());
+                }
+                if(nbaleatoire==3){
+                    reponse1.setText(listeMauvaiseReponse.get(indiceMauvaiseReponse2).getReponse());
+                    reponse2.setText(listeMauvaiseReponse.get(indiceMauvaiseReponse3).getReponse());
+                    reponse3.setText(listeMauvaiseReponse.get(indiceMauvaiseReponse1).getReponse());
+                    reponse4.setText(listeBonneReponse.get(indice-1).getReponse());
+                }
+
+
             }catch (Exception e){
                 return;
             }

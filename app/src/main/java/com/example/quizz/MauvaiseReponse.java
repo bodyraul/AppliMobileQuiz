@@ -11,6 +11,7 @@ public class MauvaiseReponse {
         this.reponse = reponse;
     }
 
-    public MauvaiseReponse() {
+    public MauvaiseReponse(String reponse) {
+        this.reponse = reponse;
     }
 }
