@@ -8,4 +8,6 @@
     <string name="Numero_Question">question 1</string>
     <string name="Contenu_Question">contenu de la question contenu de la question contenu de la question</string>
     <string name="Contenu_Reponse"></string>
+    <string name="score">score</string>
+    <string name="retour_accueil">Retour à l\'accueil</string>
 </resources>

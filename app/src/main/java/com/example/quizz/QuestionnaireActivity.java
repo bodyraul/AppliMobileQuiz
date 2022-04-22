@@ -2,6 +2,8 @@ package com.example.quizz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,8 +25,8 @@ public class QuestionnaireActivity extends AppCompatActivity {
     int indiceMauvaiseReponse2 =1;
     int indiceMauvaiseReponse3 =2;
     int nombreTotaleQuestion= 0;
-    Button reponse1,reponse2,reponse3,reponse4;
-    TextView numeroQuestion,contenuQuestion;
+    Button reponse1,reponse2,reponse3,reponse4,retourAccueil;
+    TextView numeroQuestion,contenuQuestion,affichageScore;
     String j ="0";
     int time = 2500;
 
@@ -70,19 +72,19 @@ public class QuestionnaireActivity extends AppCompatActivity {
         reponse2=findViewById(R.id.buttonReponse2);
         reponse3=findViewById(R.id.buttonReponse3);
         reponse4=findViewById(R.id.buttonReponse4);
+        retourAccueil=findViewById(R.id.buttonRetourAccueil);
         numeroQuestion=findViewById(R.id.textViewNumeroQuestion);
         contenuQuestion=findViewById(R.id.textViewContenuQuestion);
+        affichageScore=findViewById(R.id.textViewScore);
 
 
         ajouterQuestionListe(questions,q1);ajouterQuestionListe(questions,q2);ajouterQuestionListe(questions,q3);ajouterQuestionListe(questions,q4);
-        
         nombreTotaleQuestion= questions.size();
-
-
         ajouterBonneReponseListe(listeBonneReponse,q1.getBonneReponse());ajouterBonneReponseListe(listeBonneReponse,q2.getBonneReponse());ajouterBonneReponseListe(listeBonneReponse,q3.getBonneReponse());ajouterBonneReponseListe(listeBonneReponse, q4.getBonneReponse());
-
         ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr1);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr2);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr3);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr4);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr5);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr6);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr7);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr8);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr9);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr10);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr11);ajouterMauvaiseReponseListe(listeMauvaiseReponse,mr12);
 
+        afficherBoutonAcceuil(false);
+        afficherscore(score,false);
         majNumeroQuestionQuestionnaire(questions, indiceBonneReponse);
         majContenuReponse(indiceBonneReponse,indiceMauvaiseReponse1,indiceMauvaiseReponse2,indiceMauvaiseReponse3);
         majContenuQuestion(indiceBonneReponse);
@@ -91,95 +93,104 @@ public class QuestionnaireActivity extends AppCompatActivity {
         reponse1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                indiceBonneReponse++;
-                indiceMauvaiseReponse1 +=3;
-                indiceMauvaiseReponse2 +=3;
-                indiceMauvaiseReponse3 +=3;
                 j="1";
-
-                q= testContenuQuestion();
-                testBonneReponse(q);
-                majNumeroQuestionQuestionnaire(questions, indiceBonneReponse);
-                majContenuReponse(indiceBonneReponse,indiceMauvaiseReponse1,indiceMauvaiseReponse2,indiceMauvaiseReponse3);
-                majContenuQuestion(indiceBonneReponse);
-
-
+                AllModifOnCliqueBouton();
             }
         });
 
         reponse2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                indiceBonneReponse++;
-                indiceMauvaiseReponse1 +=3;
-                indiceMauvaiseReponse2 +=3;
-                indiceMauvaiseReponse3 +=3;
                 j="2";
-
-                q= testContenuQuestion();
-                testBonneReponse(q);
-                majNumeroQuestionQuestionnaire(questions, indiceBonneReponse);
-                majContenuReponse(indiceBonneReponse,indiceMauvaiseReponse1,indiceMauvaiseReponse2,indiceMauvaiseReponse3);
-                majContenuQuestion(indiceBonneReponse);
-
-
-
-
+                AllModifOnCliqueBouton();
             }
         });
 
         reponse3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                indiceBonneReponse++;
-                indiceMauvaiseReponse1 +=3;
-                indiceMauvaiseReponse2 +=3;
-                indiceMauvaiseReponse3 +=3;
                 j="3";
-
-                q= testContenuQuestion();
-                testBonneReponse(q);
-                majNumeroQuestionQuestionnaire( questions, indiceBonneReponse);
-                majContenuReponse(indiceBonneReponse,indiceMauvaiseReponse1,indiceMauvaiseReponse2,indiceMauvaiseReponse3);
-                majContenuQuestion(indiceBonneReponse);
-
-
+                AllModifOnCliqueBouton();
             }
         });
 
         reponse4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                indiceBonneReponse++;
-                indiceMauvaiseReponse1 +=3;
-                indiceMauvaiseReponse2 +=3;
-                indiceMauvaiseReponse3 +=3;
                 j="4";
+                AllModifOnCliqueBouton();
+            }
+        });
 
-                q= testContenuQuestion();
-                testBonneReponse(q);
-                majNumeroQuestionQuestionnaire(questions, indiceBonneReponse);
-                majContenuReponse(indiceBonneReponse,indiceMauvaiseReponse1,indiceMauvaiseReponse2,indiceMauvaiseReponse3);
-                majContenuQuestion(indiceBonneReponse);
-
-
-
+        retourAccueil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QuestionnaireActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
     }
 
 
-    private int genererInt(int borneInf, int borneSup){
-        Random random = new Random();
-        int nb;
-        nb = borneInf+random.nextInt(borneSup-borneInf);
-        return nb;
+        private int genererInt(int borneInf, int borneSup){
+            Random random = new Random();
+            int nb;
+            nb = borneInf+random.nextInt(borneSup-borneInf);
+            return nb;
+        }
+        private void afficherBoutonAcceuil(boolean b){
+            if (b){
+                retourAccueil.setVisibility(View.VISIBLE);
+                retourAccueil.setEnabled(b);
+            }else {
+                retourAccueil.setVisibility(View.INVISIBLE);
+                retourAccueil.setEnabled(b);
+            }
+        }
+
+
+    private void afficherscore(int score,boolean b){
+        if(b && score == 0){
+            affichageScore.setVisibility(View.VISIBLE);
+            affichageScore.setText("Lamentable, votre score est de "+score);
+        }
+        else if(b && score == 1){
+            affichageScore.setVisibility(View.VISIBLE);
+            affichageScore.setText("Nul, votre score est de "+score);
+        }
+        else if(b && score == 2){
+            affichageScore.setVisibility(View.VISIBLE);
+            affichageScore.setText("Bof, votre score est de "+score);
+        }
+        else if(b && score == 3){
+            affichageScore.setVisibility(View.VISIBLE);
+            affichageScore.setText("Bien, votre score est de "+score);
+        }
+        else if(b && score == 4){
+            affichageScore.setVisibility(View.VISIBLE);
+            affichageScore.setText("Très bien, votre score est de "+score);
+        }
+        else {
+            affichageScore.setVisibility(View.INVISIBLE);
+        }
     }
+
+
+
+
+
+        private void AllModifOnCliqueBouton(){
+            indiceBonneReponse++;
+            indiceMauvaiseReponse1 +=3;
+            indiceMauvaiseReponse2 +=3;
+            indiceMauvaiseReponse3 +=3;
+            q= testContenuQuestion();
+            testBonneReponse(q);
+            majNumeroQuestionQuestionnaire(questions, indiceBonneReponse);
+            majContenuReponse(indiceBonneReponse,indiceMauvaiseReponse1,indiceMauvaiseReponse2,indiceMauvaiseReponse3);
+            majContenuQuestion(indiceBonneReponse);
+        }
 
         private Question testContenuQuestion(){
             int k=0;
@@ -206,7 +217,14 @@ public class QuestionnaireActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 if (indiceBonneReponse > 4){
-                    Toast.makeText(this, "Votre score est de : "+score+"/"+nombreTotaleQuestion, Toast.LENGTH_LONG).show();
+                    try {
+                        Thread.sleep(Long.valueOf(0));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    majBouton();
+                    afficherscore(score,true);
+                    afficherBoutonAcceuil(true);
                 }
             }else {
                 Toast.makeText(this, "Mauvaise réponse", Toast.LENGTH_SHORT).show();
@@ -216,8 +234,11 @@ public class QuestionnaireActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 if (indiceBonneReponse > 4){
-                    Toast.makeText(this, "Votre score est de : "+score+"/"+nombreTotaleQuestion, Toast.LENGTH_LONG).show();
+                    majBouton();
+                    afficherscore(score,true);
+                    afficherBoutonAcceuil(true);
                 }
+
             }
         }
 
@@ -252,7 +273,6 @@ public class QuestionnaireActivity extends AppCompatActivity {
             if (indice<= nombreTotaleQuestion){
                 numeroQuestion.setText("Question " +indice+"/"+nombreTotaleQuestion);
             }else{
-                majBouton();
                 return;
             }
         }

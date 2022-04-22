@@ -15,10 +15,10 @@
         android:layout_marginEnd="16dp"
         android:background="@color/Numero_intitule_question"
         android:gravity="center"
-        android:paddingStart="20sp"
-        android:paddingTop="20sp"
-        android:paddingEnd="20sp"
-        android:paddingBottom="20sp"
+        android:paddingStart="10sp"
+        android:paddingTop="10sp"
+        android:paddingEnd="10sp"
+        android:paddingBottom="10sp"
         android:text="@string/Numero_Question"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -36,10 +36,10 @@
         android:layout_marginEnd="16dp"
         android:background="@color/Numero_intitule_question"
         android:gravity="center"
-        android:paddingStart="20sp"
-        android:paddingTop="20sp"
-        android:paddingEnd="20sp"
-        android:paddingBottom="20sp"
+        android:paddingStart="10sp"
+        android:paddingTop="10sp"
+        android:paddingEnd="10sp"
+        android:paddingBottom="10sp"
         android:text="@string/Contenu_Question"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -48,6 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewNumeroQuestion" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -63,10 +64,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/bouton_reponse_quiz"
-            android:paddingStart="25dp"
-            android:paddingTop="25dp"
-            android:paddingEnd="25dp"
-            android:paddingBottom="25dp"
+            android:paddingStart="15dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="15dp"
             android:text="@string/Contenu_Reponse"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -76,10 +77,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/bouton_reponse_quiz"
-            android:paddingStart="25dp"
-            android:paddingTop="25dp"
-            android:paddingEnd="25dp"
-            android:paddingBottom="25dp"
+            android:paddingStart="15dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="15dp"
             android:text="@string/Contenu_Reponse"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -89,10 +90,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/bouton_reponse_quiz"
-            android:paddingStart="25dp"
-            android:paddingTop="25dp"
-            android:paddingEnd="25dp"
-            android:paddingBottom="25dp"
+            android:paddingStart="15dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="15dp"
             android:text="@string/Contenu_Reponse"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -102,12 +103,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/bouton_reponse_quiz"
-            android:paddingStart="25dp"
-            android:paddingTop="25dp"
-            android:paddingEnd="25dp"
-            android:paddingBottom="25dp"
+            android:paddingStart="15dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="15dp"
             android:text="@string/Contenu_Reponse"
             android:textColor="@color/black"
             android:textSize="16sp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/textViewScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30sp"
+            android:layout_marginTop="30sp"
+            android:layout_marginEnd="30sp"
+            android:layout_marginBottom="30sp"
+            android:gravity="center"
+            android:text="@string/score"
+            android:textColor="@color/score"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/buttonRetourAccueil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100sp"
+            android:layout_marginEnd="100sp"
+            android:text="@string/retour_accueil" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

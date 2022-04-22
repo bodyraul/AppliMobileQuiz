@@ -61,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 if(!(saisirNom.getText()==null) && !(saisirNom.getText().toString().isEmpty()) ){
                     changerCouleurBoutonDelete(238,0,58);
                     activerBoutonDelete(true);
-                    if ( saisirNom.getText().length()>=4){
+                    if ( saisirNom.getText().length()>=3){
                         changerCouleurBoutonCommencer(50,218,3);
                         activerBoutonCommencer(true);
-                    }if ( saisirNom.getText().length()<4){
+                    }if ( saisirNom.getText().length()<3){
                         changerCouleurBoutonCommencer(206,206,206);
                         activerBoutonCommencer(false);
                     }
@@ -73,11 +73,15 @@ public class MainActivity extends AppCompatActivity {
                     activerBoutonDelete(false);
                 }
 
-
-                if(saisirNom.getText().length() == 8){
-                    Toast.makeText(MainActivity.this, "la taille du prénom ne peut être supérieure à 8", Toast.LENGTH_SHORT).show();
-                }if(saisirNom.getText().length()>8){
-                    String text = saisirNom.getText().toString().substring(0,8);
+                if(saisirNom.getText().toString().matches("[^A-Za-z0-9]+")){
+                    String text = saisirNom.getText().toString().substring(0,saisirNom.length()-1);
+                    saisirNom.setText(text);
+                    Toast.makeText(MainActivity.this, "Vous ne pouvez saisir que des chiffres ou des lettres pour le prénom", Toast.LENGTH_LONG).show();
+                }
+                if(saisirNom.getText().length() == 10){
+                    Toast.makeText(MainActivity.this, "la taille du prénom doit être entre 3 et 10 inclus", Toast.LENGTH_SHORT).show();
+                }if(saisirNom.getText().length()>10){
+                    String text = saisirNom.getText().toString().substring(0,10);
                     saisirNom.setText(text);
                     saisirNom.setSelection(saisirNom.getText().length());
                 }
